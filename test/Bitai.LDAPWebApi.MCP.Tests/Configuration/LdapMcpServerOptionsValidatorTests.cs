@@ -95,4 +95,50 @@ public class LdapMcpServerOptionsValidatorTests
         Assert.False(isValid);
         Assert.Contains("TransportMode", error);
     }
+
+    [Fact]
+    public void TryValidate_ReturnsFalse_WhenStreamableHttpCorsOriginsAreMissing()
+    {
+        var options = new LdapMcpServerOptions
+        {
+            ApiBaseUrl = "https://localhost:5101",
+            TransportMode = LdapMcpServerOptions.TransportModeStreamableHttp,
+            RequestTimeoutSeconds = 30,
+            MaxRetries = 2,
+            RetryDelayMilliseconds = 400,
+            StreamableHttpCors = new LdapMcpStreamableHttpCorsOptions
+            {
+                AllowAnyOrigin = false,
+                AllowedOrigins = []
+            }
+        };
+
+        var isValid = LdapMcpServerOptionsValidator.TryValidate(options, out var error);
+
+        Assert.False(isValid);
+        Assert.Contains("StreamableHttpCors:AllowedOrigins", error);
+    }
+
+    [Fact]
+    public void TryValidate_ReturnsTrue_WhenStreamableHttpCorsAllowsAnyOrigin()
+    {
+        var options = new LdapMcpServerOptions
+        {
+            ApiBaseUrl = "https://localhost:5101",
+            TransportMode = LdapMcpServerOptions.TransportModeStreamableHttp,
+            RequestTimeoutSeconds = 30,
+            MaxRetries = 2,
+            RetryDelayMilliseconds = 400,
+            StreamableHttpCors = new LdapMcpStreamableHttpCorsOptions
+            {
+                AllowAnyOrigin = true,
+                AllowedOrigins = []
+            }
+        };
+
+        var isValid = LdapMcpServerOptionsValidator.TryValidate(options, out var error);
+
+        Assert.True(isValid);
+        Assert.Equal(string.Empty, error);
+    }
 }

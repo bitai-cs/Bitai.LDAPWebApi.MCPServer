@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ModelContextProtocol.AspNetCore;
-using ModelContextProtocol.Server;
 
 namespace Bitai.LDAPWebApi.MCP;
 
@@ -38,21 +37,21 @@ public static class Program
 
     private static async Task RunStreamableHttpAsync(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);        
+        var builder = WebApplication.CreateBuilder(args);
+        builder.Configuration.AddEnvironmentVariables(prefix: LdapMcpServerOptions.EnvironmentVariablePrefix);
 
         ConfigureServices(builder, builder.Services, builder.Configuration, useStreamableHttp: true);
 
         var app = builder.Build();
-        //// Enabling CORS is a bad practice when using StreamableHttp transport.
-        //app.UseCors();
+        app.UseCors();
         app.MapMcp("/mcp");
 
         await app.RunAsync();
     }
-
+    
     private static IMcpServerBuilder ConfigureServices(IHostApplicationBuilder builder, IServiceCollection services, IConfiguration configuration, bool useStreamableHttp)
     {
-        builder.Configuration.AddEnvironmentVariables(prefix: LdapMcpServerOptions.EnvironmentVariablePrefix);
+        // builder.Configuration.AddEnvironmentVariables(prefix: LdapMcpServerOptions.EnvironmentVariablePrefix);
 
         services
             .AddOptions<LdapMcpServerOptions>()
@@ -67,17 +66,33 @@ public static class Program
 
         if (useStreamableHttp)
         {
+            // Read the CORS settings from configuration and apply them to the CORS policy.
+            var corsOptions = configuration
+            .GetSection($"{LdapMcpServerOptions.SectionName}:{nameof(LdapMcpServerOptions.StreamableHttpCors)}")
+            .Get<LdapMcpStreamableHttpCorsOptions>()
+            ?? new LdapMcpStreamableHttpCorsOptions();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policyBuilder =>
+                {
+                    policyBuilder
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+
+                    if (corsOptions.AllowAnyOrigin)
+                    {
+                        policyBuilder.AllowAnyOrigin();
+                    }
+                    else
+                    {
+                        policyBuilder.WithOrigins(corsOptions.AllowedOrigins.ToArray());
+                    }
+                });
+            });
+
             return services
-                //// Enabling CORS is a bad practice when using StreamableHttp transport.
-                //.AddCors(options =>
-                //{
-                //    options.AddDefaultPolicy(builder =>
-                //    {
-                //        builder.AllowAnyOrigin()
-                //               .AllowAnyMethod()
-                //               .AllowAnyHeader();
-                //    });
-                //})
                 .Configure<HttpServerTransportOptions>(options =>
                 {
                     // It's a good practice to configure the service as stateless when scaling.

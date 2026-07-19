@@ -7,6 +7,13 @@
     <AssemblyName>Bitai.LDAPWebApi.MCP</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>MCP Server for LDAP Web Api </Title>
+    <Description>MCP Server for LDAP Web Api</Description>
+    <PackageProjectUrl>https://github.com/bitai-cs/Bitai.LDAPWebApi.MCPServer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bitai-cs/Bitai.LDAPWebApi.MCPServer.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>mcp;mcp-server;ldap;authentication;provisioning;ad;directory</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +24,21 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
