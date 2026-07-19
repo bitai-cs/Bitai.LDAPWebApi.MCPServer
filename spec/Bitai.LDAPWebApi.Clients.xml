@@ -1,0 +1,644 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bitai.LDAPWebApi.Clients</name>
+    </assembly>
+    <members>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient">
+            <summary>
+            Client for the LDAP Web API Authentications controller.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient"/> class.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient.#ctor(System.String,System.String,System.Boolean,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredential">Client credentials to request an access token  from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredential">Client credentials to request an access token from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient.AuthenticateAsync(Bitai.LDAPHelper.DTO.LDAPDomainAccountCredential,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a POST request to authenticate a domain account credential.
+            </summary>
+            <param name="ldapCredential">Account credentials or network credentials.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the domain account authentication result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPAuthenticationsWebApiClient.AuthenticateWithoutUserLookupAsync(Bitai.LDAPHelper.DTO.LDAPDomainAccountCredential,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a POST request to authenticate a domain account credential without loading user details.
+            </summary>
+            <param name="ldapCredential">Account credentials or network credentials.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the domain account authentication result.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient">
+            <summary>
+            Client for the LDAP Web API CatalogTypes controller.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient"/> class.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient.#ctor(System.String,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient.#ctor(System.String,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="clientCredentials">Client credentials to request an access token  from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient.#ctor(System.String,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPCatalogTypesWebApiClient.GetAllAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to retrieve available LDAP catalog types.
+            </summary>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the configured LDAP catalog types.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient">
+            <summary>
+            Client for the LDAP Web API Directory controller.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient"/> class.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredentials">Client credentials to request an access token  from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByIdentifierAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            Sends a GET request to search one directory entry by identifier.
+            </summary>
+            <param name="identifier">User account identifier.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByIdentifierAsync(System.String,System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean)">
+            <summary>
+            Sends a GET request to search one directory entry by identifier and select required attributes.
+            </summary>
+            <param name="identifier">User account identifier.</param>
+            <param name="requiredAttributes">Set of LDAP attributes that the search result should contain. See <see cref="T:Bitai.LDAPHelper.DTO.RequiredEntryAttributes"/>.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByIdentifierAsync(System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to search one directory entry by identifier and identifier attribute.
+            </summary>
+            <param name="identifier">User account identifier.</param>
+            <param name="identifierAttribute">Type of attribute that serves as an identifier for the user account. See <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/>.</param>
+            <param name="requiredAttributes">Set of LDAP attributes that the search result should contain. See <see cref="T:Bitai.LDAPHelper.DTO.RequiredEntryAttributes"/>.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByFiltersAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,System.String,System.Boolean)">
+            <summary>
+            Sends a GET request to search directory entries using one filter.
+            </summary>
+            <param name="filterAttribute"><see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="filterValue"/>.</param>
+            <param name="filterValue">The value that must be compared with the <paramref name="filterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByFiltersAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to search directory entries using one filter and a required attribute projection.
+            </summary>
+            <param name="filterAttribute"><see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="filterValue"/>.</param>
+            <param name="filterValue">The value that must be compared with the <paramref name="filterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="requiredAttributes">The attributes that we want to obtain for each LDAP entry that was obtained as result of the search.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByFiltersAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Nullable{System.Boolean},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to search directory entries using up to two filters.
+            </summary>
+            <param name="filterAttribute"><see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="filterValue"/>.</param>
+            <param name="filterValue">The value that must be compared with the <paramref name="filterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="secondFilterAttribute">Second <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="secondFilterValue"/>.</param>
+            <param name="secondFilterValue">The value that must be compared with the <paramref name="secondFilterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="combineFilters">Whether it is combined in a conjunction or not the search filters.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPDirectoryWebApiClient.SearchByFiltersAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Nullable{System.Boolean},System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to search directory entries using up to two filters and a required attribute projection.
+            </summary>
+            <param name="filterAttribute"><see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="filterValue"/>.</param>
+            <param name="filterValue">The value that must be compared with the <paramref name="filterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="secondFilterAttribute">Second <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="secondFilterValue"/>.</param>
+            <param name="secondFilterValue">The value that must be compared with the <paramref name="secondFilterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="combineFilters">Whether it is combined in a conjunction or not the search filters.</param>
+            <param name="requiredAttributes">The attributes that we want to obtain for each LDAP entry that was obtained as result of the search.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the search result.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient">
+            <summary>
+            Client for group-related routes under the LDAP Web API Directory controller.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient"/> class.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredentials">Client credentials to request an access token  from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient.SearchByIdentifierAsync(System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to search one LDAP group entry by identifier.
+            </summary>
+            <param name="identifier">The value that must be compared with the <paramref name="identifierAttribute"/> in order to satisfy the search condition.</param>
+            <param name="identifierAttribute"><see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that identifies an LDAP entry.</param>
+            <param name="requiredAttributes">The attributes that we want to obtain from the LDAP entry as a result of the search.</param>
+            <param name="requestLabel">Label that will identify the results of the operation.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the group search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPGroupsDirectoryWebApiClient.SearchFilteringByAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Nullable{System.Boolean},System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to search LDAP group entries using one or two filters.
+            </summary>
+            <param name="filterAttribute"><see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="filterValue"/>.</param>
+            <param name="filterValue">The value that must be compared with the <paramref name="filterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="secondFilterAttribute">Second <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> that will condition the search according to the <paramref name="secondFilterValue"/>.</param>
+            <param name="secondFilterValue">The value that must be compared with the <paramref name="secondFilterAttribute"/> in order to satisfy the search condition.</param>
+            <param name="combineFilters">Whether it is combined in a conjunction or not the search filters.</param>
+            <param name="requiredAttributes">The attributes that we want to obtain for each LDAP entry that was obtained as result of the search.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the group search result.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient">
+            <summary>
+            Client for the LDAP Web API ServerProfiles controller.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient"/> class.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.#ctor(System.String,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.#ctor(System.String,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="clientCredentials">Client credentials to request an access token  from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.#ctor(System.String,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.GetProfileIdsAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to retrieve all configured LDAP server profile identifiers.
+            </summary>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the list of profile identifiers.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.GetByProfileIdAsync(System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to retrieve one LDAP server profile by profile identifier.
+            </summary>
+            <param name="serverProfileId">LDAP Server profile Id.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the requested LDAP server profile.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPServerProfilesWebApiClient.GetAllAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sends a GET request to retrieve all configured LDAP server profiles.
+            </summary>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing all LDAP server profiles.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient">
+            <summary>
+            Client for user-related routes under the LDAP Web API Directory controller.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient"/> class.
+            </summary>
+            <param name="webApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="serverProfile">LDAP Server Profile Id.</param>
+            <param name="useGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="webApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="serverProfile">LDAP Server Profile Id.</param>
+            <param name="useGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandle">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="webApiBaseUrl">Api address.</param>
+            <param name="serverProfile">Server profile Id.</param>
+            <param name="useGlobalCatalog">Whether or not to use the global catalog.</param>
+            <param name="clientCredential">Client credentials used to connect to the API.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="webApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="serverProfile">LDAP Server Profile Id.</param>
+            <param name="useGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredential">Client credentials to request an access token from the Identity Server. This access token will be sent in the HTTP authorization header as Bearer Token.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.SearchFilteringByAsync(System.String,System.Boolean,System.String)">
+            <summary>
+            Search for user accounts using the sAMAccountName attribute.
+            </summary>
+            <param name="samAccountName">The sAMAccountName value to filter by.</param>
+            <param name="setBearerToken">Whether or not to add the security "Bearer Token" to the HTTP request header.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <returns>An HTTP response containing the user search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.SearchFilteringByAsync(System.String,Bitai.LDAPHelper.DTO.RequiredEntryAttributes,System.Boolean,System.String)">
+            <summary>
+            Search for user accounts using the sAMAccountName attribute and specifying the required attributes.
+            </summary>
+            <param name="samAccountName">The sAMAccountName value to filter by.</param>
+            <param name="requiredAttributes">Set of LDAP attributes that the search result should contain.</param>
+            <param name="setBearerToken">Whether or not to add the security "Bearer Token" to the HTTP request header.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <returns>An HTTP response containing the user search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.SearchFilteringByAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,System.Boolean,System.String)">
+            <summary>
+            Search for user accounts using a specific LDAP attribute filter.
+            </summary>
+            <param name="filterAttribute">LDAP attribute type to filter by.</param>
+            <param name="filterValue">Value that will be used to filter the LDAP attribute assigned in the filterAttribute parameter.</param>
+            <param name="setBearerToken">Whether or not to add the security "Bearer Token" to the HTTP request header.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <returns>An HTTP response containing the user search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.SearchFilteringByAsync(Bitai.LDAPHelper.DTO.EntryAttribute,System.String,Bitai.LDAPHelper.DTO.RequiredEntryAttributes,System.Boolean,System.String)">
+            <summary>
+            Search for user accounts using a specific LDAP attribute filter and specifying the required attributes.
+            </summary>
+            <param name="filterAttribute">LDAP attribute type to filter by.</param>
+            <param name="filterValue">Value that will be used to filter the LDAP attribute assigned in the filterAttribute parameter.</param>
+            <param name="requiredAttributes">Set of LDAP attributes that the search result should contain.</param>
+            <param name="setBearerToken">Whether or not to add the security "Bearer Token" to the HTTP request header.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <returns>An HTTP response containing the user search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.SearchFilteringByAsync(System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Nullable{System.Boolean},System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Search for one or more user accounts using search filters.
+            </summary>
+            <param name="filterAttribute">LDAP attribute type that should contain (fully or partially) the value of the <paramref name="filterValue"/> parameter.</param>
+            <param name="filterValue">Value that will be used to filter the LDAP attribute assigned in the <paramref name="filterAttribute"/> parameter.</param>
+            <param name="secondFilterAttribute">Optional LDAP attribute type that should contain (fully or partially) the value of the <paramref name="secondFilterValue"/> parameter.</param>
+            <param name="secondFilterValue">Optional value that will be used to filter the LDAP attribute assigned in the <paramref name="secondFilterAttribute"/> parameter.</param>
+            <param name="combineFilters">Whether the first filter is combined inclusively or exclusively with the second filter.</param>
+            <param name="requiredAttributes">Set of LDAP attributes that the search result should contain.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to add the security "Bearer Token" to the HTTP request header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the user search result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.CreateMsADUserAccountAsync(Bitai.LDAPHelper.DTO.LDAPMsADUserAccount,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Creates an MS AD user account.
+            </summary>
+            <param name="newUSerAccount">Data for the new user account. See <see cref="T:Bitai.LDAPHelper.DTO.LDAPMsADUserAccount"/>.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the account creation result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.SetMsADUserAccountPasswordAsync(Bitai.LDAPWebApi.DTO.LDAPCredential,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Sets the password for an MS AD user account.
+            </summary>
+            <param name="credential">The <see cref="T:Bitai.LDAPWebApi.DTO.LDAPCredential"/> that contains the password to be assigned to the user account.</param>
+            <param name="identifierAttribute">The LDAP <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> type to which the <paramref name="credential"/> (route) parameter relates.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the password update result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.DisableMsADUserAccountAsync(System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Disables an MS AD user account.
+            </summary>
+            <param name="identifier">User account identifier value.</param>
+            <param name="identifierAttribute">LDAP attribute used as the identifier route value.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the disable operation result.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPUserDirectoryWebApiClient.RemoveMsADUserAccountAsync(System.String,System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute},System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Removes an MS AD user account.
+            </summary>
+            <param name="identifier">User account identifier value.</param>
+            <param name="identifierAttribute">LDAP attribute used as the identifier route value.</param>
+            <param name="requestLabel">Custom tag to identify the request and mark the data returned in the response.</param>
+            <param name="setBearerToken">Whether or not to request and / or assign the access token in the authorization HTTP header.</param>
+            <param name="cancellationToken">See <see cref="T:System.Threading.CancellationToken"/>.</param>
+            <returns>An HTTP response containing the remove operation result.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient">
+            <summary>
+            Provides shared configuration and helper utilities for LDAP Web API clients.
+            </summary>
+        </member>
+        <member name="P:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.LDAPServerProfile">
+            <summary>
+            Gets or sets the LDAP server profile identifier defined in the LDAP Web API configuration.
+            </summary>
+        </member>
+        <member name="P:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.UseLDAPServerGlobalCatalog">
+            <summary>
+            Gets or sets a value indicating whether requests should target the server global catalog instead of the local catalog.
+            </summary>
+        </member>
+        <member name="P:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.LDAPServerCatalogTypes">
+            <summary>
+            Gets helper methods for resolving LDAP catalog type route values.
+            </summary>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with Identity Server credentials and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with LDAP server profile routing settings.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether the global catalog or the local catalog will be used.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with LDAP server profile routing settings and Identity Server credentials.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether the global catalog or the local catalog will be used.</param>
+            <param name="clientCredentials">Security parameters to obtain an access token from the Identity Server.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,System.String,System.Boolean,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with server configuration details and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.#ctor(System.String,System.String,System.Boolean,Bitai.WebApi.Client.WebApiClientCredential,System.Net.Http.HttpClientHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient"/> class with server configuration details, Identity Server credentials, and a custom HttpClientHandler.
+            </summary>
+            <param name="ldapWebApiBaseUrl">LDAP Web Api base URL.</param>
+            <param name="ldapServerProfile">LDAP Server Profile Id.</param>
+            <param name="useLdapServerGlobalCatalog">Whether or not the global catalog of the LDAP server will be used; otherwise the local catalog of the LDAP server will be used.</param>
+            <param name="clientCredentials">Client credentials to request an access token from the Identity Server.</param>
+            <param name="handler">The custom HttpClientHandler to handle HTTP requests.</param>
+            <param name="disposeHandler">true if the inner handler should be disposed of by Dispose(), false if you intend to reuse the inner handler.</param>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.GetOptionalEntryAttributeName(System.Nullable{Bitai.LDAPHelper.DTO.EntryAttribute})">
+            <summary>
+            Gets the query-string value for an optional <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/> parameter.
+            </summary>
+            <param name="optionalEntryAttribute">Nullable <see cref="T:Bitai.LDAPHelper.DTO.EntryAttribute"/>.</param>
+            <returns>The attribute name when specified; otherwise an empty string.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.GetOptionalRequiredEntryAttributesName(System.Nullable{Bitai.LDAPHelper.DTO.RequiredEntryAttributes})">
+            <summary>
+            Gets the query-string value for an optional <see cref="T:Bitai.LDAPHelper.DTO.RequiredEntryAttributes"/> parameter.
+            </summary>
+            <param name="nullable">Nullable <see cref="T:Bitai.LDAPHelper.DTO.RequiredEntryAttributes"/>.</param>
+            <returns>The attribute set value when specified; otherwise an empty string.</returns>
+        </member>
+        <member name="M:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.GetOptionalBooleanValue(System.Nullable{System.Boolean})">
+            <summary>
+            Gets the query-string value for an optional Boolean parameter.
+            </summary>
+            <param name="nullable">Nullable Boolean value.</param>
+            <returns>The Boolean value as text when specified; otherwise an empty string.</returns>
+        </member>
+        <member name="T:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.ControllerNames">
+            <summary>
+            Exposes constant route segment names for LDAP Web API controllers.
+            </summary>
+        </member>
+        <member name="F:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.ControllerNames.ServerProfilesController">
+            <summary>
+            Server Profiles controller name.
+            </summary>
+        </member>
+        <member name="F:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.ControllerNames.CatalogTypesController">
+            <summary>
+            Catalog Types controller name.
+            </summary>
+        </member>
+        <member name="F:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.ControllerNames.AuthenticationsController">
+            <summary>
+            Authentications controller name
+            </summary>
+        </member>
+        <member name="F:Bitai.LDAPWebApi.Clients.LDAPWebApiBaseClient.ControllerNames.DirectoryController">
+            <summary>
+            Directory controller name.
+            </summary>
+        </member>
+    </members>
+</doc>

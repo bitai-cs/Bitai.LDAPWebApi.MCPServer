@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="spec/Bitai.LDAPWebApi.Clients.xml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Bitai.LDAPWebApi.MCP/Bitai.LDAPWebApi.MCP.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="test/Bitai.LDAPWebApi.MCP.Tests/Bitai.LDAPWebApi.Clients.Tests.csproj" />
+  </Folder>
+</Solution>
