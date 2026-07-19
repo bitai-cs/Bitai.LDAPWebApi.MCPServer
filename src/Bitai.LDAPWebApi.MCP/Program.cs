@@ -27,22 +27,20 @@ public static class Program
     private static async Task RunStdioAsync(string[] args)
     {
         var builder = Host.CreateApplicationBuilder(args);
+
+        // Stdio need a clear buffered console to work properly, so we need to disable the console logger.
         builder.Logging.ClearProviders();
 
-        builder.Configuration.AddEnvironmentVariables(prefix: LdapMcpServerOptions.EnvironmentVariablePrefix);
-
-        var mcpBuilder = ConfigureServices(builder.Services, builder.Configuration, useStreamableHttp: false);
+        var mcpBuilder = ConfigureServices(builder, builder.Services, builder.Configuration, useStreamableHttp: false);
 
         await builder.Build().RunAsync();
     }
 
     private static async Task RunStreamableHttpAsync(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);        
 
-        builder.Configuration.AddEnvironmentVariables(prefix: LdapMcpServerOptions.EnvironmentVariablePrefix);                    
-
-        ConfigureServices(builder.Services, builder.Configuration, useStreamableHttp: true);
+        ConfigureServices(builder, builder.Services, builder.Configuration, useStreamableHttp: true);
 
         var app = builder.Build();
         //// Enabling CORS is a bad practice when using StreamableHttp transport.
@@ -52,8 +50,10 @@ public static class Program
         await app.RunAsync();
     }
 
-    private static IMcpServerBuilder ConfigureServices(IServiceCollection services, IConfiguration configuration, bool useStreamableHttp)
+    private static IMcpServerBuilder ConfigureServices(IHostApplicationBuilder builder, IServiceCollection services, IConfiguration configuration, bool useStreamableHttp)
     {
+        builder.Configuration.AddEnvironmentVariables(prefix: LdapMcpServerOptions.EnvironmentVariablePrefix);
+
         services
             .AddOptions<LdapMcpServerOptions>()
             .Bind(configuration.GetSection(LdapMcpServerOptions.SectionName))
