@@ -21,13 +21,10 @@ public sealed class LdapMcpServerOptions
     /// </summary>
     public LdapMcpStreamableHttpCorsOptions StreamableHttpCors { get; init; } = new();
 
-    public string ApiBaseUrl { get; init; } = string.Empty;
-
-    public string? DefaultLdapServerProfile { get; init; }
-
-    public bool UseGlobalCatalog { get; init; }
-
-    public bool UseBearerToken { get; init; } = true;
+    /// <summary>
+    /// Gets LDAP Web API connection and authentication options.
+    /// </summary>
+    public LdapWebApiServerOptions LDAPWebApiServer { get; init; } = new();
 
     public string? DefaultRequestLabel { get; init; }
 
@@ -37,7 +34,37 @@ public sealed class LdapMcpServerOptions
 
     public int RetryDelayMilliseconds { get; init; } = 1000;
 
-    public LdapMcpOAuthOptions OAuth { get; init; } = new();    
+}
+
+/// <summary>
+/// Represents LDAP Web API server settings used by the MCP server.
+/// </summary>
+public sealed class LdapWebApiServerOptions
+{
+    /// <summary>
+    /// Gets the base URL of the LDAP Web API.
+    /// </summary>
+    public string ApiBaseUrl { get; init; } = string.Empty;
+
+    /// <summary>
+    /// Gets the default LDAP server profile identifier.
+    /// </summary>
+    public string? DefaultLdapServerProfile { get; init; }
+
+    /// <summary>
+    /// Gets a value indicating whether global catalog is used by default.
+    /// </summary>
+    public bool UseGlobalCatalog { get; init; }
+
+    /// <summary>
+    /// Gets a value indicating whether the API client uses bearer token mode.
+    /// </summary>
+    public bool UseBearerToken { get; init; } = true;
+
+    /// <summary>
+    /// Gets OAuth client credential settings.
+    /// </summary>
+    public LdapMcpOAuthOptions OAuth { get; init; } = new();
 }
 
 /// <summary>
@@ -58,12 +85,24 @@ public sealed class LdapMcpStreamableHttpCorsOptions
 
 public sealed class LdapMcpOAuthOptions
 {
+    /// <summary>
+    /// Gets the authority URL for OAuth token acquisition.
+    /// </summary>
     public string? AuthorityUrl { get; init; }
 
+    /// <summary>
+    /// Gets the API scope used to request tokens.
+    /// </summary>
     public string? ApiScope { get; init; }
 
+    /// <summary>
+    /// Gets the OAuth client identifier.
+    /// </summary>
     public string? ClientId { get; init; }
 
+    /// <summary>
+    /// Gets the OAuth client secret.
+    /// </summary>
     public string? ClientSecret { get; init; }
 
     public bool HasAnyCredential =>
@@ -81,17 +120,23 @@ public sealed class LdapMcpOAuthOptions
 
 public static class LdapMcpServerOptionsValidator
 {
+    /// <summary>
+    /// Validates MCP server options.
+    /// </summary>
+    /// <param name="options">Options instance to validate.</param>
+    /// <param name="validationError">Validation error when invalid; otherwise empty string.</param>
+    /// <returns><see langword="true"/> when valid; otherwise <see langword="false"/>.</returns>
     public static bool TryValidate(LdapMcpServerOptions options, out string validationError)
     {
-        if (string.IsNullOrWhiteSpace(options.ApiBaseUrl))
+        if (string.IsNullOrWhiteSpace(options.LDAPWebApiServer.ApiBaseUrl))
         {
-            validationError = $"{LdapMcpServerOptions.SectionName}:ApiBaseUrl is required.";
+            validationError = $"{LdapMcpServerOptions.SectionName}:LDAPWebApiServer:ApiBaseUrl is required.";
             return false;
         }
 
-        if (!Uri.TryCreate(options.ApiBaseUrl, UriKind.Absolute, out _))
+        if (!Uri.TryCreate(options.LDAPWebApiServer.ApiBaseUrl, UriKind.Absolute, out _))
         {
-            validationError = $"{LdapMcpServerOptions.SectionName}:ApiBaseUrl must be an absolute URI.";
+            validationError = $"{LdapMcpServerOptions.SectionName}:LDAPWebApiServer:ApiBaseUrl must be an absolute URI.";
             return false;
         }
 
@@ -113,10 +158,10 @@ public static class LdapMcpServerOptionsValidator
             return false;
         }
 
-        if (options.OAuth.HasAnyCredential && !options.OAuth.HasCompleteCredentials)
+        if (options.LDAPWebApiServer.OAuth.HasAnyCredential && !options.LDAPWebApiServer.OAuth.HasCompleteCredentials)
         {
             validationError =
-                $"{LdapMcpServerOptions.SectionName}:OAuth requires AuthorityUrl, ApiScope, ClientId and ClientSecret together.";
+                $"{LdapMcpServerOptions.SectionName}:LDAPWebApiServer:OAuth requires AuthorityUrl, ApiScope, ClientId and ClientSecret together.";
             return false;
         }
 

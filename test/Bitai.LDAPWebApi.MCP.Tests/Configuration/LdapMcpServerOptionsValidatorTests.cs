@@ -9,7 +9,10 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "https://localhost:5101",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = "https://localhost:5101"
+            },
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,
             RetryDelayMilliseconds = 400
@@ -26,7 +29,10 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = ""
+            },
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,
             RetryDelayMilliseconds = 400
@@ -43,15 +49,18 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "https://localhost:5101",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = "https://localhost:5101",
+                OAuth = new LdapMcpOAuthOptions
+                {
+                    AuthorityUrl = "https://localhost/IsSts9",
+                    ClientId = "client"
+                }
+            },
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,
-            RetryDelayMilliseconds = 400,
-            OAuth = new LdapMcpOAuthOptions
-            {
-                AuthorityUrl = "https://localhost/IsSts9",
-                ClientId = "client"
-            }
+            RetryDelayMilliseconds = 400
         };
 
         var isValid = LdapMcpServerOptionsValidator.TryValidate(options, out var error);
@@ -65,7 +74,10 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "https://localhost:5101",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = "https://localhost:5101"
+            },
             TransportMode = LdapMcpServerOptions.TransportModeStreamableHttp,
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,
@@ -83,7 +95,10 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "https://localhost:5101",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = "https://localhost:5101"
+            },
             TransportMode = "Http",
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,
@@ -101,7 +116,10 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "https://localhost:5101",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = "https://localhost:5101"
+            },
             TransportMode = LdapMcpServerOptions.TransportModeStreamableHttp,
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,
@@ -124,7 +142,10 @@ public class LdapMcpServerOptionsValidatorTests
     {
         var options = new LdapMcpServerOptions
         {
-            ApiBaseUrl = "https://localhost:5101",
+            LDAPWebApiServer = new LdapWebApiServerOptions
+            {
+                ApiBaseUrl = "https://localhost:5101"
+            },
             TransportMode = LdapMcpServerOptions.TransportModeStreamableHttp,
             RequestTimeoutSeconds = 30,
             MaxRetries = 2,

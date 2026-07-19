@@ -9,15 +9,17 @@ namespace Bitai.LDAPWebApi.MCP;
 public sealed class LdapClientFactory
 {
     private readonly LdapMcpServerOptions _options;
+    private readonly LdapWebApiServerOptions _ldapWebApiServerOptions;
 
     public LdapClientFactory(IOptions<LdapMcpServerOptions> options)
     {
         _options = options.Value;
+        _ldapWebApiServerOptions = _options.LDAPWebApiServer;
     }
 
-    public bool UseBearerToken => _options.UseBearerToken;
+    public bool UseBearerToken => _ldapWebApiServerOptions.UseBearerToken;
 
-    public bool UseGlobalCatalogByDefault => _options.UseGlobalCatalog;
+    public bool UseGlobalCatalogByDefault => _ldapWebApiServerOptions.UseGlobalCatalog;
 
     public string? DefaultRequestLabel => _options.DefaultRequestLabel;
 
@@ -31,16 +33,16 @@ public sealed class LdapClientFactory
     {
         var credential = BuildCredentialIfConfigured();
         return credential is null
-            ? new LDAPServerProfilesWebApiClient(_options.ApiBaseUrl)
-            : new LDAPServerProfilesWebApiClient(_options.ApiBaseUrl, credential);
+            ? new LDAPServerProfilesWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl)
+            : new LDAPServerProfilesWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, credential);
     }
 
     public LDAPCatalogTypesWebApiClient CreateCatalogTypesClient()
     {
         var credential = BuildCredentialIfConfigured();
         return credential is null
-            ? new LDAPCatalogTypesWebApiClient(_options.ApiBaseUrl)
-            : new LDAPCatalogTypesWebApiClient(_options.ApiBaseUrl, credential);
+            ? new LDAPCatalogTypesWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl)
+            : new LDAPCatalogTypesWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, credential);
     }
 
     public LDAPDirectoryWebApiClient CreateDirectoryClient(string? ldapServerProfile, bool? useGlobalCatalog = null)
@@ -48,8 +50,8 @@ public sealed class LdapClientFactory
         var profile = ResolveProfile(ldapServerProfile);
         var credential = BuildCredentialIfConfigured();
         return credential is null
-            ? new LDAPDirectoryWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog)
-            : new LDAPDirectoryWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog, credential);
+            ? new LDAPDirectoryWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog)
+            : new LDAPDirectoryWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog, credential);
     }
 
     public LDAPUserDirectoryWebApiClient CreateUserDirectoryClient(string? ldapServerProfile, bool? useGlobalCatalog = null)
@@ -57,8 +59,8 @@ public sealed class LdapClientFactory
         var profile = ResolveProfile(ldapServerProfile);
         var credential = BuildCredentialIfConfigured();
         return credential is null
-            ? new LDAPUserDirectoryWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog)
-            : new LDAPUserDirectoryWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog, credential);
+            ? new LDAPUserDirectoryWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog)
+            : new LDAPUserDirectoryWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog, credential);
     }
 
     public LDAPGroupsDirectoryWebApiClient CreateGroupsDirectoryClient(string? ldapServerProfile, bool? useGlobalCatalog = null)
@@ -66,8 +68,8 @@ public sealed class LdapClientFactory
         var profile = ResolveProfile(ldapServerProfile);
         var credential = BuildCredentialIfConfigured();
         return credential is null
-            ? new LDAPGroupsDirectoryWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog)
-            : new LDAPGroupsDirectoryWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog, credential);
+            ? new LDAPGroupsDirectoryWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog)
+            : new LDAPGroupsDirectoryWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog, credential);
     }
 
     public LDAPAuthenticationsWebApiClient CreateAuthenticationsClient(string? ldapServerProfile, bool? useGlobalCatalog = null)
@@ -75,17 +77,17 @@ public sealed class LdapClientFactory
         var profile = ResolveProfile(ldapServerProfile);
         var credential = BuildCredentialIfConfigured();
         return credential is null
-            ? new LDAPAuthenticationsWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog)
-            : new LDAPAuthenticationsWebApiClient(_options.ApiBaseUrl, profile, useGlobalCatalog ?? _options.UseGlobalCatalog, credential);
+            ? new LDAPAuthenticationsWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog)
+            : new LDAPAuthenticationsWebApiClient(_ldapWebApiServerOptions.ApiBaseUrl, profile, useGlobalCatalog ?? _ldapWebApiServerOptions.UseGlobalCatalog, credential);
     }
 
     public string ResolveProfile(string? requestedProfile)
     {
-        var profile = string.IsNullOrWhiteSpace(requestedProfile) ? _options.DefaultLdapServerProfile : requestedProfile;
+        var profile = string.IsNullOrWhiteSpace(requestedProfile) ? _ldapWebApiServerOptions.DefaultLdapServerProfile : requestedProfile;
         if (string.IsNullOrWhiteSpace(profile))
         {
             throw new McpException(
-                $"No LDAP server profile was provided. Set {LdapMcpServerOptions.SectionName}:DefaultLdapServerProfile or pass ldapServerProfile in the tool call.");
+                $"No LDAP server profile was provided. Set {LdapMcpServerOptions.SectionName}:LDAPWebApiServer:DefaultLdapServerProfile or pass ldapServerProfile in the tool call.");
         }
 
         return profile;
@@ -93,17 +95,17 @@ public sealed class LdapClientFactory
 
     private WebApiClientCredential? BuildCredentialIfConfigured()
     {
-        if (!_options.OAuth.HasAnyCredential)
+        if (!_ldapWebApiServerOptions.OAuth.HasAnyCredential)
         {
             return null;
         }
 
         return new WebApiClientCredential
         {
-            AuthorityUrl = _options.OAuth.AuthorityUrl ?? string.Empty,
-            ApiScope = _options.OAuth.ApiScope ?? string.Empty,
-            ClientId = _options.OAuth.ClientId ?? string.Empty,
-            ClientSecret = _options.OAuth.ClientSecret ?? string.Empty
+            AuthorityUrl = _ldapWebApiServerOptions.OAuth.AuthorityUrl ?? string.Empty,
+            ApiScope = _ldapWebApiServerOptions.OAuth.ApiScope ?? string.Empty,
+            ClientId = _ldapWebApiServerOptions.OAuth.ClientId ?? string.Empty,
+            ClientSecret = _ldapWebApiServerOptions.OAuth.ClientSecret ?? string.Empty
         };
     }
 }

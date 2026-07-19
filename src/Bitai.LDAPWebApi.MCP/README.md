@@ -14,19 +14,19 @@ All API calls are executed through `Bitai.LDAPWebApi.Clients` (no direct `HttpCl
 
 Configure `LdapMcp` in `appsettings.json` or via environment variables:
 
-- `ApiBaseUrl`
 - `TransportMode` (`Stdio` or `StreamableHttp`)
-- `DefaultLdapServerProfile`
-- `UseGlobalCatalog`
-- `UseBearerToken`
+- `LDAPWebApiServer.ApiBaseUrl`
+- `LDAPWebApiServer.DefaultLdapServerProfile`
+- `LDAPWebApiServer.UseGlobalCatalog`
+- `LDAPWebApiServer.UseBearerToken`
 - `DefaultRequestLabel`
 - `RequestTimeoutSeconds`
 - `MaxRetries`
 - `RetryDelayMilliseconds`
-- `OAuth.AuthorityUrl`
-- `OAuth.ApiScope`
-- `OAuth.ClientId`
-- `OAuth.ClientSecret`
+- `LDAPWebApiServer.OAuth.AuthorityUrl`
+- `LDAPWebApiServer.OAuth.ApiScope`
+- `LDAPWebApiServer.OAuth.ClientId`
+- `LDAPWebApiServer.OAuth.ClientSecret`
 
 OAuth values must be provided together when bearer token mode is enabled.
 
